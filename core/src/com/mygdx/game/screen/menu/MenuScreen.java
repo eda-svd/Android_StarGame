@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+
+import math.Rect;
 import stargame.engine.Base2DScreen;
 
 /**
@@ -18,6 +20,7 @@ public class MenuScreen extends Base2DScreen {
     Texture background;
     Texture play;
     Texture pause;
+    Rect plButton;
     Vector2 tap = new Vector2();
 
 
@@ -33,6 +36,7 @@ public class MenuScreen extends Base2DScreen {
         background = new Texture("background.jpg");
         play = new Texture("play.png");
         pause = new Texture("pause.png");
+        plButton = new Rect(560,50,25,25);
         super.show();
     }
 
@@ -46,11 +50,18 @@ public class MenuScreen extends Base2DScreen {
             tap.y = Gdx.input.getY();
         }
 
-        batch.draw(play, 30,50, 50,50);
         batch.draw(pause,560,50,50,50);
-        
+        if (plButton.isMe(tap)){
+            System.out.println("lol");
+            batch.draw(play, plButton.getLeft(),plButton.getBottom(), 45,45);
+        }
+        else {
+            batch.draw(play, plButton.getLeft(),plButton.getBottom(), 50,50);
+        }
         batch.draw(img,tap.x,Gdx.graphics.getHeight()-tap.y);
         batch.end();
+        tap.x = 0;
+        tap.y = 0;
     }
 
     @Override
