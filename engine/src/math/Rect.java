@@ -29,7 +29,7 @@ public class Rect {
         return pos.x - halfWidth;
     }
 
-    public float scaleX(int s){return (getBottom()*s);}
+    public float scaleX(int s){return (float)(getBottom()*s);}
     public float scaleY(int s){return (getLeft()*s);}
 
     public float getTop() {
