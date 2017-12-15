@@ -29,8 +29,25 @@ public class Rect {
         return pos.x - halfWidth;
     }
 
-    public float scaleX(int s){return (float)(getBottom()*s);}
-    public float scaleY(int s){return (getLeft()*s);}
+    public float scaleX(double s){
+        System.out.println("scalex"+(getBottom()/((s+((1-s)/2)))));
+        return (float) (getLeft()+(getWidth()-(getWidth()*(s+((1-s)/2)))));
+    }
+
+    public float scaleY(double s){
+        System.out.println(("scaley"+(getLeft()/((s+((1-s)/2))))));
+        return (float)(getBottom()+(getHeight()-getHeight()*((s+((1-s)/2)))));
+    }
+
+    public float scaleLX(double s){
+        System.out.println("scalelx"+(2*(getHalfWidth()*s)));
+        return (float)(2*(getHalfWidth()*s));
+    }
+
+    public float scaleLY(double s){
+        System.out.println("scalely"+(2*(getHalfHeight()*s)));
+        return (float)(2*(getHalfHeight()*s));
+    }
 
     public float getTop() {
         return pos.y + halfHeight;

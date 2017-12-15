@@ -37,8 +37,8 @@ public class MenuScreen extends Base2DScreen {
         background = new Texture("background.jpg");
         play = new Texture("play.png");
         pause = new Texture("pause.png");
-        plButton = new Rect(50,50,25,25);
-        pauButton = new Rect(580,50,25,25);
+        plButton = new Rect(75,75,25,25);
+        pauButton = new Rect(565,75,25,25);
         super.show();
     }
 
@@ -51,18 +51,18 @@ public class MenuScreen extends Base2DScreen {
         if (Gdx.input.isTouched()){
             tap.x = Gdx.input.getX();
             tap.y = Gdx.graphics.getHeight() - Gdx.input.getY();
-            batch.draw(img,tap.x,tap.y);
+
         }
 
         if (plButton.isMe(tap)){
-            batch.draw(play, plButton.getLeft(),plButton.getBottom(), 45,45);
+            batch.draw(play, plButton.scaleX(0.9),plButton.scaleY(0.9), plButton.scaleLX(0.9),plButton.scaleLY(0.9));
         }
         else {
             batch.draw(play, plButton.getLeft(),plButton.getBottom(), 50,50);
         }
 
         if (pauButton.isMe(tap)){
-            batch.draw(pause, pauButton.getLeft(),pauButton.getBottom(), 45,45);
+            batch.draw(pause,pauButton.scaleX(0.9),pauButton.scaleY(0.9), pauButton.scaleLX(0.9),pauButton.scaleLY(0.9));
         }
         else {
             batch.draw(pause, pauButton.getLeft(),pauButton.getBottom(), 50,50);
