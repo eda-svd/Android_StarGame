@@ -21,6 +21,7 @@ public class MenuScreen extends Base2DScreen {
     Texture play;
     Texture pause;
     Rect plButton;
+    Rect pauButton;
     Vector2 tap = new Vector2();
 
 
@@ -36,7 +37,8 @@ public class MenuScreen extends Base2DScreen {
         background = new Texture("background.jpg");
         play = new Texture("play.png");
         pause = new Texture("pause.png");
-        plButton = new Rect(560,50,25,25);
+        plButton = new Rect(50,50,25,25);
+        pauButton = new Rect(580,50,25,25);
         super.show();
     }
 
@@ -45,20 +47,28 @@ public class MenuScreen extends Base2DScreen {
         super.render(delta);
         batch.begin();
         batch.draw(background,0,0);
+
         if (Gdx.input.isTouched()){
             tap.x = Gdx.input.getX();
-            tap.y = Gdx.input.getY();
+            tap.y = Gdx.graphics.getHeight() - Gdx.input.getY();
+            batch.draw(img,tap.x,tap.y);
         }
 
-        batch.draw(pause,560,50,50,50);
         if (plButton.isMe(tap)){
-            System.out.println("lol");
             batch.draw(play, plButton.getLeft(),plButton.getBottom(), 45,45);
         }
         else {
             batch.draw(play, plButton.getLeft(),plButton.getBottom(), 50,50);
         }
-        batch.draw(img,tap.x,Gdx.graphics.getHeight()-tap.y);
+
+        if (pauButton.isMe(tap)){
+            batch.draw(pause, pauButton.getLeft(),pauButton.getBottom(), 45,45);
+        }
+        else {
+            batch.draw(pause, pauButton.getLeft(),pauButton.getBottom(), 50,50);
+        }
+
+
         batch.end();
         tap.x = 0;
         tap.y = 0;
@@ -70,5 +80,7 @@ public class MenuScreen extends Base2DScreen {
         batch.dispose();
         background.dispose();
         img.dispose();
+        pause.dispose();
+        play.dispose();
     }
 }
